@@ -40,9 +40,9 @@ class BlumBlumShub:
                 m=2**128, a=12345678, c=12345, x0=42)
 
             # garantindo que a seed tem 64 bit e esta dentro da faixa de 0 <= seed < n
-            seed = lcg.next_with_bit_length(64) % self.n
+            seed = lcg.next_bits(64) % self.n
             while gcd(seed, self.n) != 1:
-                seed = lcg.next_with_bit_length(64)
+                seed = lcg.next_bits(64)
 
         # x pode ser interpretado como o estado atual do gerador
         self.x = seed % self.n
@@ -78,6 +78,7 @@ if __name__ == "__main__":
             # medir o tempo corretamente
             p = next_usable_prime(3 * 10**9)
             q = next_usable_prime(4 * 10**9)
+            print(p, q)
             bbs = BlumBlumShub(p, q)
 
             dif_times = []

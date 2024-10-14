@@ -32,10 +32,11 @@ class LinearCongruentialGenerator:
 
     # reimplementação da equação de recorrência agora com parâmetro bit_length
     # para gerar um número com "bit_length" bits
-    def next_with_bit_length(self, bit_length):
+    def next_bits(self, bit_length):
         while self.x.bit_length() < bit_length:
             self.next()
             # print(self.x)
+            # print(self.x.bit_length() < bit_length)
         # return self.x, self.x.bit_length()
         return self.x
 
@@ -44,7 +45,7 @@ if __name__ == "__main__":
     teste = False
 
     # lgc = LinearCongruentialGenerator(m=2**2048, a=12345678, c=12345, x0=42)
-    # print(lgc.next_with_bit_length(2048))
+    # print(lgc.next_bits(2048))
 
     if teste:
         # Exemplo de uso:
@@ -67,7 +68,7 @@ if __name__ == "__main__":
 
     else:
         # deseja-se gerar um número com 40, 56, 80, 128, 168, 224, 256, 512, 1024, 2048 e 4096 bits:
-        # será usado então o método next_with_bit_length criado para garantir o número de bits desejado
+        # será usado então o método next_bits criado para garantir o número de bits desejado
         num_bits = [40, 56, 80, 128, 168, 224, 256, 512, 1024, 2048, 4096]
 
         for nb in num_bits:
@@ -77,7 +78,7 @@ if __name__ == "__main__":
             dif_times = []
             for i in range(100000):
                 start_time = time.time()
-                generatetd_number = lgc.next_with_bit_length(nb)
+                generatetd_number = lgc.next_bits(nb)
                 final_time = time.time()
                 dif_times.append(final_time - start_time)
 
